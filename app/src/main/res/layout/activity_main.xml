@@ -14,17 +14,35 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <Button
+        android:id="@+id/btn_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Remove last item" />
+
+    <Button
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Add item" />
 
-    <Button
-        android:id="@+id/btn_remove"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Remove item" />
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:inputType="textPersonName"
+        android:hint="Title" />
+
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName"
+        android:hint="Description" />
 
 </LinearLayout>

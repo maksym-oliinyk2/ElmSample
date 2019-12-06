@@ -4,7 +4,9 @@ import android.app.Activity
 import android.app.Application
 import androidx.fragment.app.Fragment
 import com.example.component.AppComponent
-import com.example.component.LiveEnv
+import com.example.component.Message
+import com.example.component.State
+import com.example.env.LiveEnv
 import com.oliynick.max.elm.core.component.Component
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher

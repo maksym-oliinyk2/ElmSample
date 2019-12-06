@@ -1,0 +1,11 @@
+apply plugin: 'kotlin'
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+dependencies {
+    // no external dependencies
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation 'junit:junit:4.12'
+}

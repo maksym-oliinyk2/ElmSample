@@ -2,29 +2,26 @@
 
 package com.example.component
 
-import android.util.Log
-import com.example.Command
-import com.example.Message
-import com.example.State
+import com.example.env.Env
 import com.oliynick.max.elm.core.component.*
-import com.oliynick.max.elm.core.component.androidLogger
 
 fun Env.AppComponent(): Component<Message, State> {
 
     suspend fun doResolve(cmd: Command) = this.resolve(cmd)
 
+    fun doUpdate(msg: Message, s: State) = this.update(msg, s)
+
     return component(
         initializer(),
         ::doResolve,
-        ::update,
+        ::doUpdate,
         storageInterceptor(androidLogger("Todo App"))
     )
 }
 
-
 private fun Env.initializer(): Initializer<State, Command> = {
     // loads application state from any storage
-    (retrieve() ?: State(emptyList())) to emptySet<Nothing>()
+    (retrieve() ?: State()) to emptySet<Nothing>()
 }
 
 fun Env.storageInterceptor(another: Interceptor<Message, State, Command>): Interceptor<Message, State, Command> =

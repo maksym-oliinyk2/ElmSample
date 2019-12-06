@@ -1,8 +1,11 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "unused")
 
+// our domain models and definitions
+// ideally we want it to be readable by
+// non programmers such as managers, BO, etc.
+
 package com.example.domain
 
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
 // all domain related stuff
@@ -42,7 +45,7 @@ data class TodoItem(
  * it won't compile, we can be sure passed arguments meet business requirements,
  * we can safely work with them.
  */
-data class Title internal constructor(// prohibits creation outside our non-existing 'domain' module
+data class Title internal constructor(// prohibits creation outside our 'domain' module
     inline val value: String
 ) {
     // our factory
@@ -63,7 +66,7 @@ data class Title internal constructor(// prohibits creation outside our non-exis
 
 }
 
-data class Description internal constructor(// prohibits creation outside our non-existing 'domain' module
+data class Description internal constructor(// prohibits creation outside our 'domain' module
     inline val value: String
 ) {
     // our factory
