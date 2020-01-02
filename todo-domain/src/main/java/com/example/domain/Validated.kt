@@ -1,8 +1,15 @@
 package com.example.domain
 
+/**
+ * Helper class to work with validated values
+ *
+ * @param T validated value type
+ */
 sealed class Validated<out T>
 
-data class Valid<out T>(val t: T) : Validated<T>()
+data class Valid<out T>(
+    val t: T
+) : Validated<T>()
 
 data class Invalid(
     val description: String

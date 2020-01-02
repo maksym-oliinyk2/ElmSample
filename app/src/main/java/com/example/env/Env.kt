@@ -6,7 +6,6 @@ import android.content.Context
 import com.example.component.LiveUpdater
 import com.example.component.Updater
 import com.example.todo.analytics.Analytics
-import com.example.todo.analytics.ConsoleAnalytics
 import kotlinx.coroutines.CoroutineScope
 
 // Acts as Dagger's Component declaration
@@ -31,7 +30,7 @@ fun LiveEnv(
 ): Env = object : Env,
     Resolver<Env> by Resolver(),
     Updater by LiveUpdater,
-    Analytics by ConsoleAnalytics,
+    Analytics by Analytics(),
     Storage<Env> by Storage(),
     HasCachingDir by HasCache(context),
     HasJsonSerializers by GsonSerializers(),

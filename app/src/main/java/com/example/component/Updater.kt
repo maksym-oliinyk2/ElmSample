@@ -23,7 +23,7 @@ object LiveUpdater : Updater {
         message: Message,
         state: State
     ): UpdateWith<State, Command> =
-        // calculations of what should be executed by Resolver
+        // calculates stuff to be executed by Resolver
         when (message) {
             is AddItem -> tryToCreateNew(
                 message.title,

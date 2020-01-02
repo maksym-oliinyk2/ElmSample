@@ -19,7 +19,7 @@ class AndroidApp : Application(), CoroutineScope by ComponentScope {
         LiveEnv(this@AndroidApp, this@AndroidApp)
     }
 
-    val component by unsafeLazy { env.AppComponent() }
+    val component by unsafeLazy { AppComponent(env) }
 
 }
 

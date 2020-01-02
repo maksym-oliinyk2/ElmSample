@@ -29,13 +29,11 @@ interface LiveResolver<Env> : Resolver<Env>
         suspend fun resolve(): Set<Message> =
             // navigation, http requests, logging, IO operations should be done here
             when (command) {
-                is TrackItemAdded -> command.sideEffect { track("Item with id $id was added") }
-                is TrackItemRemoved -> command.sideEffect { track("Item with id $id was removed") }
+                is TrackItemAdded -> command.sideEffect { trackItemAdded(id) }
+                is TrackItemRemoved -> command.sideEffect { trackItemRemoved(id) }
             }
 
         return runCatching { resolve() }
-            // some analytics
-            .onSuccess { track("Command: $command triggered messages: $it") }
             // error handling in one place
             .getOrThrow()// actually we should return an error message here
     }

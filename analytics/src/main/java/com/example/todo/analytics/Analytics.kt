@@ -1,11 +1,20 @@
+@file:Suppress("FunctionName")
+
 package com.example.todo.analytics
 
+/**
+ * Some analytics API
+ */
 interface Analytics {
-    fun track(event: Any)
+    fun trackItemAdded(itemId: Long)
+    fun trackItemRemoved(itemId: Long)
 }
 
-// add other means of analytics below
-//....
-object ConsoleAnalytics : Analytics {
-    override fun track(event: Any) = println(event)
+fun Analytics() = object : Analytics by ConsoleAnalytics {}
+
+// Analytics implementation details encapsulated in
+// its own module and invisible to other modules
+internal object ConsoleAnalytics : Analytics {
+    override fun trackItemAdded(itemId: Long) = println("Item with id $itemId was added")
+    override fun trackItemRemoved(itemId: Long) = println("Item with id $itemId was removed")
 }

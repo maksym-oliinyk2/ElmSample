@@ -7,11 +7,10 @@ import com.example.component.Message
 import com.example.component.RemoveLastItem
 import com.example.domain.error
 import com.example.domain.value
+import com.example.misc.collect
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.consumeAsFlow
 
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
@@ -56,16 +55,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     override fun onDestroy() {
         cancel()
         super.onDestroy()
-    }
-}
-
-// util stuff
-suspend inline fun <T> Flow<T>.collect(
-    on: CoroutineDispatcher,
-    crossinline action: suspend (value: T) -> Unit
-) {
-    withContext(on) {
-        collect { action(it) }
     }
 }
 

@@ -31,7 +31,7 @@ fun HasCache(file: File) = object : HasCachingDir {
 
     init {
         file.createNewFile()
-        require(file.isFile) { "Specified file $file is not actually a valid file" }
+        require(file.isFile) { "Specified file ($file) isn't valid file" }
     }
 
     override val cache: File = file
@@ -39,9 +39,12 @@ fun HasCache(file: File) = object : HasCachingDir {
 }
 
 fun GsonSerializers(gson: Gson = DEFAULT_GSON) = object :
-    HasJsonSerializers {
+        HasJsonSerializers {
     override fun toJson(any: Any): String = gson.toJson(any)
-    override fun <T> fromJson(json: String, clazz: Class<T>): T = gson.fromJson(json, clazz)
+    override fun <T> fromJson(
+        json: String,
+        clazz: Class<T>
+    ): T = gson.fromJson(json, clazz)
 }
 
 fun GsonSerializers(
@@ -60,16 +63,18 @@ interface Storage<Env> {
 
 interface HasJsonSerializers {
     fun toJson(any: Any): String
-    fun <T> fromJson(json: String, clazz: Class<T>): T
+    fun <T> fromJson(
+        json: String,
+        clazz: Class<T>
+    ): T
 }
 
 interface HasCachingDir {
     val cache: File
 }
 
-interface SimpleStorage<Env> : Storage<Env>
-        where Env : HasJsonSerializers,
-              Env : HasCachingDir {
+interface SimpleStorage<Env> : Storage<Env> where Env : HasJsonSerializers,
+                                                  Env : HasCachingDir {
 
     override suspend fun Env.store(state: State) {
         coroutineScope {
