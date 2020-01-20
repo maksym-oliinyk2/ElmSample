@@ -25,14 +25,8 @@ object LiveUpdater : Updater {
     ): UpdateWith<State, Command> =
         // calculates stuff to be executed by Resolver
         when (message) {
-            is AddItem -> tryToCreateNew(
-                message.title,
-                message.description,
-                state
-            )
-            is RemoveLastItem -> tryToRemoveLast(
-                state
-            )
+            is AddItem -> tryToCreateNew(message.title, message.description, state)
+            is RemoveLastItem -> tryToRemoveLast(state)
         }
 
     fun tryToRemoveLast(

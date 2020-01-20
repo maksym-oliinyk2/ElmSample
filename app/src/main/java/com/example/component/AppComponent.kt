@@ -5,7 +5,9 @@ package com.example.component
 import com.example.env.Env
 import com.oliynick.max.elm.core.component.*
 
-fun AppComponent(env: Env): Component<Message, State> {
+fun AppComponent(
+    env: Env
+): Component<Message, State> {
 
     suspend fun doResolve(
         cmd: Command

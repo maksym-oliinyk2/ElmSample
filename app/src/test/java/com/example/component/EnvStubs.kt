@@ -63,6 +63,7 @@ fun TestComponent(
     )
 }
 
+// assembles test environment. Any component can be replaced if needed
 fun TestEnv(
     dispatcher: CoroutineDispatcher,
     resolver: Resolver<TestEnv> = NoOpResolver(),
